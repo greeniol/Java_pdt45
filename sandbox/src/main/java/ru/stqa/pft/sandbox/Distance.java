@@ -12,7 +12,7 @@ public class Distance {
   }
 
   public double getdistance(Distance p) {
-    return Math.sqrt(((x - p.x)*(x - p.x))+((y - p.y)*(y - p.y)));
+    return Math.sqrt((x - p.x)*(x - p.x)+(y - p.y)*(y - p.y));
   }
 
   }
