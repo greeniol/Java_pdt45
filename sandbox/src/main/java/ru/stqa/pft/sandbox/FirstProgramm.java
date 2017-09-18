@@ -2,8 +2,8 @@ package ru.stqa.pft.sandbox;
 
 public class FirstProgramm {
   public static void main(String[] args) {
-    hello("world");
-    hello("baby");
+    Hello("world");
+    Hello("baby");
 
     Square s = new Square(5);
     System.out.println("Площадь квадрата со стороной, " + s.l + " = " + s.area());
@@ -11,11 +11,11 @@ public class FirstProgramm {
 
     Rectangle r = new Rectangle(4, 6);
     System.out.println("Площадь квадрата со сторонaми " + r.a + " и " + r.b + " = " + r.area());
-
   }
 
-  public static void hello(String some) {
+  public static void Hello(String some) {
     System.out.println("Hello, " + some + "!");
   }
+
 
 }
