@@ -32,18 +32,24 @@ public class GroupAndContactTests {
     }
 
     @Test
-    public void TestCreationGroupAndContact() {
+    public void TestCreationGroup() {
 
         gotoGroupPage();
         initGroupCreation();
-        fillGroupForm(new GroupData("Test1", "Test2", "Test3"));
+        fillGroupForm(new GroupData("Test6", "Test88", "Test7"));
         submitGroupCreation();
         returnToGroupPage();
+
+    }
+
+    @Test
+    public void TestCreationContact() {
         addNewContact();
         fillContactForm(new ContactData("First", "Contact", "Street home 88", "mail@mail.con", "74445551122"));
         submitNewContact();
         returnToHome();
     }
+
 
     private void returnToHome() {
         wd.findElement(By.linkText("home")).click();
