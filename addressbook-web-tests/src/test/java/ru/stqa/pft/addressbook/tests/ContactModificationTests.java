@@ -11,7 +11,7 @@ public class ContactModificationTests extends TestBase {
     app.getNavigationHelper().returnToHome();
     app.getContactHelper().selectContact();
     app.getContactHelper().modifyContactMainForm();
-    app.getContactHelper().fillContactForm(new ContactData("First", "ContactEdit", "Street home", "mail@mail.com", "74411151122"));
+    app.getContactHelper().fillContactForm(new ContactData("First", "ContactEdit", "Street home", "mail@mail.com", "74411151122", null), false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().returnToHome();
   }
@@ -23,7 +23,7 @@ public class ContactModificationTests extends TestBase {
     app.getContactHelper().selectContact();
     app.getContactHelper().goToDetails();
     app.getContactHelper().modifyContactDetailsForm();
-    app.getContactHelper().fillContactForm(new ContactData("First", "ContactEdit", "Street home", "mail@mail.com", "74411151122"));
+    app.getContactHelper().fillContactForm(new ContactData("First", "ContactEdit", "Street home", "mail@mail.com", "74411151122", null), false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().returnToHome();
 
