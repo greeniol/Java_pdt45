@@ -8,12 +8,12 @@ public class SessionHelper extends HelperBase {
 
   public SessionHelper(WebDriver wd) {
 
-    super (wd);
+    super(wd);
   }
 
   public void login(String user, String password) {
-    type(By.name("user"),user);
-    type(By.name("pass"),password);
+    type(By.name("user"), user);
+    type(By.name("pass"), password);
     click(By.xpath("//form[@id='LoginForm']/input[3]"));
   }
 }
