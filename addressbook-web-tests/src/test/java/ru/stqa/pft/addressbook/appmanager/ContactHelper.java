@@ -53,16 +53,16 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void modifyContactMainForm() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void modifyContactMainForm(int index) {
+    wd.findElements(By.xpath("//img[contains(@src,'icons/pencil.png')]")).get(index).click();
   }
 
   public void submitContactModification() {
     click(By.name("update"));
   }
 
-  public void goToDetails() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img"));
+  public void goToDetails (int index) {
+    wd.findElements(By.xpath("//img[contains(@src,'icons/status_online.png')]")).get(index).click();;
   }
 
   public void modifyContactDetailsForm() {

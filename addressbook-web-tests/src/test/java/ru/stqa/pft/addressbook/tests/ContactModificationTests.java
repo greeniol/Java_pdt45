@@ -20,7 +20,6 @@ public class ContactModificationTests extends TestBase {
     }
     app.getNavigationHelper().returnToHome();
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().modifyContactMainForm(before.size()-1);
     ContactData contact = new ContactData(before.get(before.size()-1).getId(),"Second", "ContactEdit", "Street home", "mail@mail.com", "74411151122", null);
     app.getContactHelper().fillContactForm(contact, false);
@@ -37,7 +36,7 @@ public class ContactModificationTests extends TestBase {
     Assert.assertEquals(before, after);
   }
 
-/*   @Test
+  @Test
   //редактирование контакта через Details
   public void testContactModificationDetailsForm() {
     app.getNavigationHelper().returnToHome();
@@ -46,8 +45,7 @@ public class ContactModificationTests extends TestBase {
     }
     app.getNavigationHelper().returnToHome();
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().goToDetails();
+    app.getContactHelper().goToDetails(before.size()-1);
     app.getContactHelper().modifyContactDetailsForm();
      ContactData contact= new ContactData(before.get(before.size()-1).getId(),"First", "ContactEdit", "Street home", "mail@mail.com", "74411151122", null);
     app.getContactHelper().fillContactForm(contact, false);
@@ -56,10 +54,13 @@ public class ContactModificationTests extends TestBase {
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size()-1);
+    before.remove(before.size() - 1);
     before.add(contact);
-    Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
+    Comparator<? super ContactData> byId = (c1,c2)-> Integer.compare(c1.getId(),c2.getId());
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(before, after);
 
-  }*/
+  }
 
 }
