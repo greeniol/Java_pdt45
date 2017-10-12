@@ -15,14 +15,16 @@ GroupData {
 
     GroupData groupData = (GroupData) o;
 
+    if (id != groupData.id) return false;
     return groupname != null ? groupname.equals(groupData.groupname) : groupData.groupname == null;
   }
 
   @Override
   public int hashCode() {
-    return groupname != null ? groupname.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (groupname != null ? groupname.hashCode() : 0);
+    return result;
   }
-
 
   public String getGroupname() {
     return groupname;

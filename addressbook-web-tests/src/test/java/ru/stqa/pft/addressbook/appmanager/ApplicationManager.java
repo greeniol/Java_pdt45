@@ -1,15 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import ru.stqa.pft.addressbook.model.ContactData;
-import sun.plugin2.util.BrowserType;
-
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
