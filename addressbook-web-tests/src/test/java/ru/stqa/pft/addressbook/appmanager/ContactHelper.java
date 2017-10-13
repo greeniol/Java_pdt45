@@ -63,12 +63,22 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.xpath("//img[contains(@src,'icons/pencil.png')]")).get(index).click();
   }
 
+  public void modifyContactMainFormById(int id) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id="+id+"']"))
+            .findElement(By.xpath("img[contains(@src,'icons/pencil.png')]")).click();
+  }
+
   public void submitContactModification() {
     click(By.name("update"));
   }
 
   public void goToDetails (int index) {
     wd.findElements(By.xpath("//img[contains(@src,'icons/status_online.png')]")).get(index).click();;
+  }
+
+  public void goToDetailsById (int id) {
+    wd.findElement(By.cssSelector("a[href='view.php?id="+id+"']"))
+            .findElement(By.xpath("img[contains(@src,'icons/status_online.png')]")).click();
   }
 
   public void modifyContactDetailsForm() {
@@ -82,10 +92,17 @@ public class ContactHelper extends HelperBase {
     submitNewContact();
   }
 
-  public void modify(int index, ContactData contact) {
-   modifyContactMainForm(index);
+  public void modify(ContactData contact) {
+   modifyContactMainFormById(contact.getId());
    fillContactForm(contact, false);
    submitContactModification();
+  }
+
+  public void modifyDetails(ContactData contact) {
+    goToDetailsById(contact.getId());
+    modifyContactDetailsForm();
+    fillContactForm(contact, false);
+    submitContactModification();
   }
 
   public void delete(int index) {

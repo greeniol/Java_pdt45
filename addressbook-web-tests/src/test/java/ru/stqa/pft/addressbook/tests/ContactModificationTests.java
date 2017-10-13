@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactModificationTests extends TestBase {
   @BeforeMethod
@@ -22,44 +23,36 @@ public class ContactModificationTests extends TestBase {
   @Test
   //редактирование контакта с основной формы
   public void testContactModificationMainForm() {
-    List<ContactData> before = app.contact().list();
-    int index = before.size()-1;
-    ContactData contact = new ContactData().withId(before.get(index).getId()).withName("Second").withLastname("ContactEdit").withAddress("Street home 88")
+    Set<ContactData> before = app.contact().all();
+    ContactData modifiedContact = before.iterator().next();
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("Second").withLastname("ContactEdit").withAddress("Street home 88")
             .withMail("mail@mail.con").withPhone("74445551122");
-    app.contact().modify(index, contact);
+    app.contact().modify(contact);
     app.goTo().returnToHome();
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
-
-    before.remove(index);
+    before.remove(modifiedContact);
     before.add(contact);
-    Comparator<? super ContactData> byId = (c1,c2)-> Integer.compare(c1.getId(),c2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 
 
-/*  @Test
+  @Test
   //редактирование контакта через Details
   public void testContactModificationDetailsForm() {
-    List<ContactData> before = app.contact().list();
-    app.contact().goToDetails(before.size()-1);
-    app.contact().modifyContactDetailsForm();
-     ContactData contact= new ContactData(before.get(before.size()-1).getId(),"First", "ContactEdit", "Street home", "mail@mail.com", "74411151122", null);
-    app.contact().fillContactForm(contact, false);
-    app.contact().submitContactModification();
+    Set<ContactData> before = app.contact().all();
+    ContactData modifiedContactDetails = before.iterator().next();
+    ContactData contact=  new ContactData().withId(modifiedContactDetails.getId()).withName("Third").withLastname("ContactEditDetails").withAddress("Street home 88")
+            .withMail("mail@mail.con").withPhone("74445551122");
+    app.contact().modifyDetails(contact);
     app.goTo().returnToHome();
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
-
-    before.remove(before.size() - 1);
+    before.remove(modifiedContactDetails);
     before.add(contact);
-    Comparator<? super ContactData> byId = (c1,c2)-> Integer.compare(c1.getId(),c2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
 
-  }*/
+  }
+
 
 }
