@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,10 +44,6 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
   }
@@ -59,10 +56,6 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void modifyContactMainForm(int index) {
-    wd.findElements(By.xpath("//img[contains(@src,'icons/pencil.png')]")).get(index).click();
-  }
-
   public void modifyContactMainFormById(int id) {
     wd.findElement(By.cssSelector("a[href='edit.php?id="+id+"']"))
             .findElement(By.xpath("img[contains(@src,'icons/pencil.png')]")).click();
@@ -72,9 +65,6 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void goToDetails (int index) {
-    wd.findElements(By.xpath("//img[contains(@src,'icons/status_online.png')]")).get(index).click();;
-  }
 
   public void goToDetailsById (int id) {
     wd.findElement(By.cssSelector("a[href='view.php?id="+id+"']"))
@@ -105,12 +95,6 @@ public class ContactHelper extends HelperBase {
     submitContactModification();
   }
 
-  public void delete(int index) {
-    selectContact(index);
-    deleteContact();
-    switchAlert();
-  }
-
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteContact();
@@ -122,20 +106,8 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name|='entry']"));
-    for (WebElement element : elements) {
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String name = element.findElement(By.xpath("./td[2]/following-sibling::td")).getText();
-      String lastname =  element.findElement(By.xpath("./td[1]/following-sibling::td")).getText();
-      contacts.add(new ContactData().withId(id).withName(name).withLastname(lastname));
-    }
-    return contacts;
-  }
-
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = new HashSet<>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name|='entry']"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
