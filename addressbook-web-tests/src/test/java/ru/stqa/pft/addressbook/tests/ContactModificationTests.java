@@ -20,7 +20,7 @@ public class ContactModificationTests extends TestBase {
     app.goTo().returnToHome();
     if (app.contact().all().size()==0) {
       app.contact().create(new ContactData().withName("First").withLastname("Contact").withAddress("Street home 88")
-              .withMail("mail@mail.con").withPhone("74445551122").withGroup("Test2"), true);
+              .withMail("mail@mail.con").withHomephone("74445551122").withMobilephone("787113333").withWorkphone("74166361").withGroup("Test2"), true);
       app.goTo().returnToHome();
     }
   }
@@ -31,7 +31,7 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("Second").withLastname("ContactEdit").withAddress("Street home 88")
-            .withMail("mail@mail.con").withPhone("74445551122");
+            .withMail("mail@mail.con").withHomephone("74445551122").withMobilephone("787113333").withWorkphone("74166361");
     app.contact().modify(contact);
     app.goTo().returnToHome();
     Contacts after = app.contact().all();
@@ -46,7 +46,7 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData modifiedContactDetails = before.iterator().next();
     ContactData contact=  new ContactData().withId(modifiedContactDetails.getId()).withName("Third").withLastname("ContactEditDetails").withAddress("Street home 88")
-            .withMail("mail@mail.con").withPhone("74445551122");
+            .withMail("mail@mail.con").withHomephone("74445551122").withMobilephone("787113333").withWorkphone("74166361");
     app.contact().modifyDetails(contact);
     app.goTo().returnToHome();
     Contacts after = app.contact().all();

@@ -2,12 +2,14 @@ package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
 
-  private int id=Integer.MAX_VALUE;
+  private int id = Integer.MAX_VALUE;
   private String name;
   private String lastname;
   private String address;
   private String mail;
-  private String phone;
+  private String homephone;
+  private String mobilephone;
+  private String workphone;
   private String group;
 
 
@@ -40,13 +42,23 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withPhone(String phone) {
-    this.phone = phone;
+  public ContactData withGroup(String group) {
+    this.group = group;
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
+  public ContactData withHomephone(String homephone) {
+    this.homephone = homephone;
+    return this;
+  }
+
+  public ContactData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+
+  public ContactData withWorkphone(String workphone) {
+    this.workphone = workphone;
     return this;
   }
 
@@ -66,13 +78,22 @@ public class ContactData {
     return mail;
   }
 
-  public String getPhone() {
-    return phone;
-  }
-
   public String getGroup() {
     return group;
   }
+
+  public String getHomephone() {
+    return homephone;
+  }
+
+  public String getMobilephone() {
+    return mobilephone;
+  }
+
+  public String getWorkphone() {
+    return workphone;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -102,5 +123,6 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
 }
 
