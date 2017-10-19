@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
 
-
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
@@ -18,9 +17,9 @@ public class GroupCreationTests extends TestBase {
     GroupData group = new GroupData().withGroupname("Test2");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size() + 1));
-    Groups  after = app.group().all();
+    Groups after = app.group().all();
     assertThat(after, equalTo(
-            before.withAdded(group.withId(after.stream().mapToInt((g)->g.getId()).max().getAsInt()))));
+            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
   @Test
@@ -30,7 +29,7 @@ public class GroupCreationTests extends TestBase {
     GroupData group = new GroupData().withGroupname("Test2'");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups  after = app.group().all();
+    Groups after = app.group().all();
     assertThat(after.size(), equalTo(before.size()));
 
   }

@@ -16,9 +16,9 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
   @BeforeMethod
-  public void ensurePreconditions(){
+  public void ensurePreconditions() {
     app.goTo().returnToHome();
-    if (app.contact().all().size()==0) {
+    if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withName("First").withLastname("Contact").withAddress("Street home 88")
               .withMail("mail@mail.con").withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61").withGroup("Test2"), true);
       app.goTo().returnToHome();
@@ -30,8 +30,11 @@ public class ContactModificationTests extends TestBase {
   public void testContactModificationMainForm() {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("Second").withLastname("ContactEdit").withAddress("Street home 88")
-            .withMail("mail@mail.con").withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
+    ContactData contact = new ContactData().withId(modifiedContact.getId())
+            .withName("Second").withLastname("ContactEdit")
+            .withAddress("Street home 88")
+            .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
+            .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
     app.contact().modify(contact);
     app.goTo().returnToHome();
     Contacts after = app.contact().all();
@@ -45,8 +48,11 @@ public class ContactModificationTests extends TestBase {
   public void testContactModificationDetailsForm() {
     Contacts before = app.contact().all();
     ContactData modifiedContactDetails = before.iterator().next();
-    ContactData contact=  new ContactData().withId(modifiedContactDetails.getId()).withName("Third").withLastname("ContactEditDetails").withAddress("Street home 88")
-            .withMail("mail@mail.con").withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
+    ContactData contact = new ContactData().withId(modifiedContactDetails.getId())
+            .withName("Third").withLastname("ContactEditDetails")
+            .withAddress("Street home 88")
+            .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
+            .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
     app.contact().modifyDetails(contact);
     app.goTo().returnToHome();
     Contacts after = app.contact().all();

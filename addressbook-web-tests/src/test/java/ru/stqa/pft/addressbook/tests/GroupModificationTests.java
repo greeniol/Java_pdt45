@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.testng.Assert.assertEquals;
@@ -11,9 +12,9 @@ import static org.testng.Assert.assertEquals;
 public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
-  public void ensurePreconditions(){
+  public void ensurePreconditions() {
     app.goTo().GroupPage();
-    if (app.group().all().size()==0) {
+    if (app.group().all().size() == 0) {
       app.group().create(new GroupData().withGroupname("Test2"));
     }
   }
@@ -25,7 +26,7 @@ public class GroupModificationTests extends TestBase {
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withGroupname("Test3").withHeader("Test11").withFooter("Test33");
     app.group().modify(group);
-    assertThat(app.group().count(), equalTo(before.size() ));
+    assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.group().all();
     assertEquals(after.size(), before.size());
 
