@@ -32,7 +32,10 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId())
             .withName("Second").withLastname("ContactEdit")
-            .withAddress("Street home 88")
+            .withAddress("Street " + "              " +
+                    "home                      " +
+                    "88           " +
+                    "fajwerawraiwerqottttttttttttttttttt")
             .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
             .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
     app.contact().modify(contact);
@@ -50,7 +53,10 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContactDetails = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContactDetails.getId())
             .withName("Third").withLastname("ContactEditDetails")
-            .withAddress("Street home 88")
+            .withAddress("Street " + "              " +
+                    "home                      " +
+                    "88           " +
+                    "fajwerawraiwerqottttttttttttttttttt")
             .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
             .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
     app.contact().modifyDetails(contact);
