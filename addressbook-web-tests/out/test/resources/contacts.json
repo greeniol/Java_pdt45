@@ -1,0 +1,38 @@
+[
+  {
+    "name": "First 0",
+    "lastname": "Contact 0",
+    "address": "Street\nhome\n88\nnew address №0",
+    "homePhone": "+7(444)55510",
+    "mobilePhone": "787-3330",
+    "workPhone": "74 66 60",
+    "mail": "mail0@mail.con",
+    "mail2": "ree_rfsf@fjfjf0.re",
+    "mail3": "EW2ff0@gdg.com",
+    "group": "Test2"
+  },
+  {
+    "name": "First 1",
+    "lastname": "Contact 1",
+    "address": "Street\nhome\n88\nnew address №1",
+    "homePhone": "+7(444)55511",
+    "mobilePhone": "787-3331",
+    "workPhone": "74 66 61",
+    "mail": "mail1@mail.con",
+    "mail2": "ree_rfsf@fjfjf1.re",
+    "mail3": "EW2ff1@gdg.com",
+    "group": "Test2"
+  },
+  {
+    "name": "First 2",
+    "lastname": "Contact 2",
+    "address": "Street\nhome\n88\nnew address №2",
+    "homePhone": "+7(444)55512",
+    "mobilePhone": "787-3332",
+    "workPhone": "74 66 62",
+    "mail": "mail2@mail.con",
+    "mail2": "ree_rfsf@fjfjf2.re",
+    "mail3": "EW2ff2@gdg.com",
+    "group": "Test2"
+  }
+]
