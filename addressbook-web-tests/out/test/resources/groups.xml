@@ -1,0 +1,44 @@
+<list>
+  <group>
+    <groupname>Test 0</groupname>
+    <header>Header
+0</header>
+    <footer>Footer
+0</footer>
+  </group>
+  <group>
+    <groupname>Test 1</groupname>
+    <header>Header
+1</header>
+    <footer>Footer
+1</footer>
+  </group>
+  <group>
+    <groupname>Test 2</groupname>
+    <header>Header
+2</header>
+    <footer>Footer
+2</footer>
+  </group>
+  <group>
+    <groupname>Test 3</groupname>
+    <header>Header
+3</header>
+    <footer>Footer
+3</footer>
+  </group>
+  <group>
+    <groupname>Test 4</groupname>
+    <header>Header
+4</header>
+    <footer>Footer
+4</footer>
+  </group>
+  <group>
+    <groupname>Test 5</groupname>
+    <header>Header
+5</header>
+    <footer>Footer
+5</footer>
+  </group>
+</list>
