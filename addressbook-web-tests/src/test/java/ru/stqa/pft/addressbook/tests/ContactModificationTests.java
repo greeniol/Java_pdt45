@@ -40,6 +40,7 @@ public class ContactModificationTests extends TestBase {
             .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
     app.contact().modify(contact);
     app.goTo().returnToHome();
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
     assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
@@ -61,6 +62,7 @@ public class ContactModificationTests extends TestBase {
             .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61");
     app.contact().modifyDetails(contact);
     app.goTo().returnToHome();
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
     assertEquals(after.size(), before.size());
     before.remove(modifiedContactDetails);
