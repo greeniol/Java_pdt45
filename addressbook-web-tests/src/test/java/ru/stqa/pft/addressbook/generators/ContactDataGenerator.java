@@ -62,7 +62,7 @@ public class ContactDataGenerator {
               .withAddress(String.format("Street\nhome\n88\nnew address №%s",i))
               .withMail(String.format("mail%s@mail.con",i)).withMail2(String.format("ree_rfsf@fjfjf%s.re",i)).withMail3(String.format("EW2ff%s@gdg.com",i))
               .withHomephone(String.format("+7(444)5551%s",i)).withMobilephone(String.format("787-333%s",i)).withWorkphone(String.format("74 66 6%s",i))
-              .withGroup(String.format("Test2")));
+              .withGroup(String.format("Test 2")));
     }
     return contacts;
   }
