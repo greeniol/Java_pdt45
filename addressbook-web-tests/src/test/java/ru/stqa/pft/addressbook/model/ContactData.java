@@ -1,34 +1,60 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
-
+@Entity
+@Table(name ="addressbook")
 public class ContactData {
-
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private String name;
   @Expose
+  @Column(name = "lastname")
   private String lastname;
   @Expose
+  @Column(name = "address")
+  @Type(type="text")
   private String address;
   @Expose
+  @Column(name = "home")
+  @Type(type="text")
   private String homePhone;
   @Expose
+  @Column(name = "mobile")
+  @Type(type="text")
   private String mobilePhone;
   @Expose
+  @Column(name = "work")
+  @Type(type="text")
   private String workPhone;
+  @Transient
   private String allPhones;
   @Expose
+  @Column(name = "email")
+  @Type(type="text")
   private String mail;
   @Expose
+  @Column(name = "email2")
+  @Type(type="text")
   private String mail2;
   @Expose
+  @Column(name = "email3")
+  @Type(type="text")
   private String mail3;
+  @Transient
   private String allMails;
   @Expose
+  @Transient
   private String group;
+  //@Column(name = "photo")
+ // @Type(type="text")
+  @Transient
   private File photo;
 
 
@@ -182,9 +208,16 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", mail='" + mail + '\'' +
+            ", mail2='" + mail2 + '\'' +
+            ", mail3='" + mail3 + '\'' +
             '}';
   }
 
