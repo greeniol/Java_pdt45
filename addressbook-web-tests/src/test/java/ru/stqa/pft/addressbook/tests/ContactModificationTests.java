@@ -17,8 +17,8 @@ import static org.testng.Assert.assertEquals;
 public class ContactModificationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
+    if (app.db().contacts().size() == 0){
     app.goTo().returnToHome();
-    if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withName("First").withLastname("Contact").withAddress("Street home 88")
               .withMail("mail@mail.con").withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61").withGroup("Test2"), true);
       app.goTo().returnToHome();
@@ -28,7 +28,7 @@ public class ContactModificationTests extends TestBase {
   @Test
   //редактирование контакта с основной формы
   public void testContactModificationMainForm() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId())
             .withName("Second").withLastname("ContactEdit")
@@ -41,7 +41,7 @@ public class ContactModificationTests extends TestBase {
     app.contact().modify(contact);
     app.goTo().returnToHome();
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
@@ -50,7 +50,7 @@ public class ContactModificationTests extends TestBase {
   @Test
   //редактирование контакта через Details
   public void testContactModificationDetailsForm() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContactDetails = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContactDetails.getId())
             .withName("Third").withLastname("ContactEditDetails")
@@ -63,7 +63,7 @@ public class ContactModificationTests extends TestBase {
     app.contact().modifyDetails(contact);
     app.goTo().returnToHome();
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertEquals(after.size(), before.size());
     before.remove(modifiedContactDetails);
     before.add(contact);

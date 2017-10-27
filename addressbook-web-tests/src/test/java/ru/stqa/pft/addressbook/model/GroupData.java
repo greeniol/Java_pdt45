@@ -21,15 +21,6 @@ public class GroupData {
   @Expose
   @Column(name ="group_name ")
   private String groupname;
-  @Expose
-  @Column(name ="group_header")
-  @Type(type = "text")
-  private String header;
-  @Expose
-  @Column(name ="group_footer")
-  @Type(type = "text")
-  private String footer;
-
 
   @Override
   public boolean equals(Object o) {
@@ -39,15 +30,30 @@ public class GroupData {
     GroupData groupData = (GroupData) o;
 
     if (id != groupData.id) return false;
-    return groupname != null ? groupname.equals(groupData.groupname) : groupData.groupname == null;
+    if (groupname != null ? !groupname.equals(groupData.groupname) : groupData.groupname != null) return false;
+    if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;
+    return footer != null ? footer.equals(groupData.footer) : groupData.footer == null;
   }
 
   @Override
   public int hashCode() {
     int result = id;
     result = 31 * result + (groupname != null ? groupname.hashCode() : 0);
+    result = 31 * result + (header != null ? header.hashCode() : 0);
+    result = 31 * result + (footer != null ? footer.hashCode() : 0);
     return result;
   }
+
+  @Expose
+  @Column(name ="group_header")
+  @Type(type = "text")
+
+  private String header;
+  @Expose
+  @Column(name ="group_footer")
+  @Type(type = "text")
+  private String footer;
+
 
   public String getGroupname() {
     return groupname;
