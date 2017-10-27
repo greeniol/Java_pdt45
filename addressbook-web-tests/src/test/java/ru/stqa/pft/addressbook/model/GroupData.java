@@ -22,28 +22,6 @@ public class GroupData {
   @Column(name ="group_name ")
   private String groupname;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    GroupData groupData = (GroupData) o;
-
-    if (id != groupData.id) return false;
-    if (groupname != null ? !groupname.equals(groupData.groupname) : groupData.groupname != null) return false;
-    if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;
-    return footer != null ? footer.equals(groupData.footer) : groupData.footer == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (groupname != null ? groupname.hashCode() : 0);
-    result = 31 * result + (header != null ? header.hashCode() : 0);
-    result = 31 * result + (footer != null ? footer.hashCode() : 0);
-    return result;
-  }
-
   @Expose
   @Column(name ="group_header")
   @Type(type = "text")
@@ -74,11 +52,34 @@ public class GroupData {
   @Override
   public String toString() {
     return "GroupData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", groupname='" + groupname + '\'' +
+            ", header='" + header + '\'' +
+            ", footer='" + footer + '\'' +
             '}';
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    GroupData groupData = (GroupData) o;
+
+    if (id != groupData.id) return false;
+    if (groupname != null ? !groupname.equals(groupData.groupname) : groupData.groupname != null) return false;
+    if (header != null ? !header.equals(groupData.header) : groupData.header != null) return false;
+    return footer != null ? footer.equals(groupData.footer) : groupData.footer == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (groupname != null ? groupname.hashCode() : 0);
+    result = 31 * result + (header != null ? header.hashCode() : 0);
+    result = 31 * result + (footer != null ? footer.hashCode() : 0);
+    return result;
+  }
 
   public GroupData withId(int id) {
     this.id = id;
