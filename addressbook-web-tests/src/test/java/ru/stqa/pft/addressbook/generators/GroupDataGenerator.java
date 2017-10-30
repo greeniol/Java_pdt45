@@ -80,7 +80,7 @@ public class GroupDataGenerator {
     List<GroupData> groups =new ArrayList<>();
     for (int i=0; i<count; i++){
       groups.add(new GroupData().withGroupname(String.format("Test %s",i))
-      .withHeader(String.format("Header\n%s",i)).withFooter(String.format("Footer\n%s",i)));
+      .withHeader(String.format("Header %s",i)).withFooter(String.format("Footer %s",i)));
     }
     return groups;
   }

@@ -1,17 +1,17 @@
 [
   {
     "groupname": "Test 0",
-    "header": "Header\n0",
-    "footer": "Footer\n0"
+    "header": "Header 0",
+    "footer": "Footer 0"
   },
   {
     "groupname": "Test 1",
-    "header": "Header\n1",
-    "footer": "Footer\n1"
+    "header": "Header 1",
+    "footer": "Footer 1"
   },
   {
     "groupname": "Test 2",
-    "header": "Header\n2",
-    "footer": "Footer\n2"
+    "header": "Header 2",
+    "footer": "Footer 2"
   }
 ]
