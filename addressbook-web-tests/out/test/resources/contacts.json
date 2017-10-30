@@ -2,7 +2,7 @@
   {
     "name": "First 0",
     "lastname": "Contact 0",
-    "address": "Street\nhome\n88\nnew address №0",
+    "address": "Street home 88 new address № 0",
     "homePhone": "+7(444)55510",
     "mobilePhone": "787-3330",
     "workPhone": "74 66 60",
@@ -14,7 +14,7 @@
   {
     "name": "First 1",
     "lastname": "Contact 1",
-    "address": "Street\nhome\n88\nnew address №1",
+    "address": "Street home 88 new address № 1",
     "homePhone": "+7(444)55511",
     "mobilePhone": "787-3331",
     "workPhone": "74 66 61",
