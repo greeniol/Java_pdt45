@@ -23,7 +23,7 @@ public class ContactDataTests extends TestBase {
                       "fajwerawraiwerqottttttttttttttttttt")
               .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
               .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61")
-              .withGroup("Test2"), true);
+              , false);
       app.goTo().returnToHome();
     }
   }
