@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name ="addressbook")
+@Table(name = "addressbook")
 public class ContactData {
   @Id
   @Column(name = "id")
@@ -22,44 +22,44 @@ public class ContactData {
   private String lastname;
   @Expose
   @Column(name = "address")
-  @Type(type="text")
+  @Type(type = "text")
   private String address;
   @Expose
   @Column(name = "home")
-  @Type(type="text")
+  @Type(type = "text")
   private String homePhone;
   @Expose
   @Column(name = "mobile")
-  @Type(type="text")
+  @Type(type = "text")
   private String mobilePhone;
   @Expose
   @Column(name = "work")
-  @Type(type="text")
+  @Type(type = "text")
   private String workPhone;
   @Transient
   private String allPhones;
   @Expose
   @Column(name = "email")
-  @Type(type="text")
+  @Type(type = "text")
   private String mail;
   @Expose
   @Column(name = "email2")
-  @Type(type="text")
+  @Type(type = "text")
   private String mail2;
   @Expose
   @Column(name = "email3")
-  @Type(type="text")
+  @Type(type = "text")
   private String mail3;
   @Transient
   private String allMails;
   //@Column(name = "photo")
- // @Type(type="text")
+  // @Type(type="text")
   @Transient
   private File photo;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
-          joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "group_id"))
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Set<GroupData> groups = new HashSet<>();
 
   public Groups getGroups() {

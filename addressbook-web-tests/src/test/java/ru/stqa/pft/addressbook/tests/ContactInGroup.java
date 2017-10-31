@@ -1,4 +1,4 @@
 package ru.stqa.pft.addressbook.tests;
 
-public class ContactCreationWithGroup {
+public class ContactInGroup {
 }

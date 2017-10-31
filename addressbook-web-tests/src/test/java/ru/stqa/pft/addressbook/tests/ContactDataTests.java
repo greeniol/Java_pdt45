@@ -7,8 +7,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDataTests extends TestBase {
   @BeforeMethod
@@ -16,13 +16,13 @@ public class ContactDataTests extends TestBase {
     app.goTo().returnToHome();
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
-              .withName("First").withLastname("Contact")
-              .withAddress("Street " + "              " +
-                      "home                      " +
-                      "88           " +
-                      "fajwerawraiwerqottttttttttttttttttt")
-              .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
-              .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61")
+                      .withName("First").withLastname("Contact")
+                      .withAddress("Street " + "              " +
+                              "home                      " +
+                              "88           " +
+                              "fajwerawraiwerqottttttttttttttttttt")
+                      .withMail("mail@mail.con").withMail2("ree_rfsf@fjfjf.re").withMail3("EW2ff@gdg.com")
+                      .withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61")
               , false);
       app.goTo().returnToHome();
     }

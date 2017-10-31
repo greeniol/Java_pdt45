@@ -11,28 +11,28 @@ import java.util.Set;
 
 @XStreamAlias("group")
 @Entity
-@Table(name="group_list")
+@Table(name = "group_list")
 public class GroupData {
   @XStreamOmitField
   @Id
-  @Column(name ="group_id")
+  @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
 
   @Expose
-  @Column(name ="group_name ")
+  @Column(name = "group_name ")
   private String groupname;
 
   @Expose
-  @Column(name ="group_header")
+  @Column(name = "group_header")
   @Type(type = "text")
   private String header;
 
   @Expose
-  @Column(name ="group_footer")
+  @Column(name = "group_footer")
   @Type(type = "text")
   private String footer;
 
-  @ManyToMany (mappedBy = "groups")
+  @ManyToMany(mappedBy = "groups")
   private Set<ContactData> contacts = new HashSet<>();
 
   public Contacts getContactDataSet() {
