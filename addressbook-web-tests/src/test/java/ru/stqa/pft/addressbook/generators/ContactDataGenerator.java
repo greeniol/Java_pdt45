@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+import ru.stqa.pft.addressbook.tests.TestBase;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +17,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactDataGenerator {
+public class ContactDataGenerator extends TestBase {
 
   @Parameter(names = "-c", description ="Group count")
   public  int count;
@@ -56,13 +58,16 @@ public class ContactDataGenerator {
   }
 
   private List<ContactData> generateContacts(int count) {
+    Groups groups = app.db().groups();
+    File photo = new File("src\\test\\resources\\2.png");
     List<ContactData> contacts =new ArrayList<>();
     for (int i=0; i<count; i++){
       contacts.add(new ContactData().withName(String.format("First %s",i)).withLastname(String.format("Contact %s",i))
+              .withPhoto(photo)
               .withAddress(String.format("Street home 88 new address № %s",i))
               .withMail(String.format("mail%s@mail.con",i)).withMail2(String.format("ree_rfsf@fjfjf%s.re",i)).withMail3(String.format("EW2ff%s@gdg.com",i))
               .withHomephone(String.format("+7(444)5551%s",i)).withMobilephone(String.format("787-333%s",i)).withWorkphone(String.format("74 66 6%s",i))
-              .withGroup(String.format("Test 2")));
+              .inGroup(groups.iterator().next()));
     }
     return contacts;
   }

@@ -8,8 +8,7 @@
     "workPhone": "74 66 60",
     "mail": "mail0@mail.con",
     "mail2": "ree_rfsf@fjfjf0.re",
-    "mail3": "EW2ff0@gdg.com",
-    "group": "Test 2"
+    "mail3": "EW2ff0@gdg.com"
   },
   {
     "name": "First 1",
@@ -20,8 +19,7 @@
     "workPhone": "74 66 61",
     "mail": "mail1@mail.con",
     "mail2": "ree_rfsf@fjfjf1.re",
-    "mail3": "EW2ff1@gdg.com",
-    "group": "Test 2"
+    "mail3": "EW2ff1@gdg.com"
   },
   {
     "name": "First 2",
@@ -32,8 +30,7 @@
     "workPhone": "74 66 62",
     "mail": "mail2@mail.con",
     "mail2": "ree_rfsf@fjfjf2.re",
-    "mail3": "EW2ff2@gdg.com",
-    "group": "Test 2"
+    "mail3": "EW2ff2@gdg.com"
   },
   {
     "name": "First 3",
@@ -44,8 +41,7 @@
     "workPhone": "74 66 63",
     "mail": "mail3@mail.con",
     "mail2": "ree_rfsf@fjfjf3.re",
-    "mail3": "EW2ff3@gdg.com",
-    "group": "Test 2"
+    "mail3": "EW2ff3@gdg.com"
   },
   {
     "name": "First 4",
@@ -56,67 +52,6 @@
     "workPhone": "74 66 64",
     "mail": "mail4@mail.con",
     "mail2": "ree_rfsf@fjfjf4.re",
-    "mail3": "EW2ff4@gdg.com",
-    "group": "Test 2"
-  },
-  {
-    "name": "First 5",
-    "lastname": "Contact 5",
-    "address": "Street home 88 new address № 5",
-    "homePhone": "+7(444)55515",
-    "mobilePhone": "787-3335",
-    "workPhone": "74 66 65",
-    "mail": "mail5@mail.con",
-    "mail2": "ree_rfsf@fjfjf5.re",
-    "mail3": "EW2ff5@gdg.com",
-    "group": "Test 2"
-  },
-  {
-    "name": "First 6",
-    "lastname": "Contact 6",
-    "address": "Street home 88 new address № 6",
-    "homePhone": "+7(444)55516",
-    "mobilePhone": "787-3336",
-    "workPhone": "74 66 66",
-    "mail": "mail6@mail.con",
-    "mail2": "ree_rfsf@fjfjf6.re",
-    "mail3": "EW2ff6@gdg.com",
-    "group": "Test 2"
-  },
-  {
-    "name": "First 7",
-    "lastname": "Contact 7",
-    "address": "Street home 88 new address № 7",
-    "homePhone": "+7(444)55517",
-    "mobilePhone": "787-3337",
-    "workPhone": "74 66 67",
-    "mail": "mail7@mail.con",
-    "mail2": "ree_rfsf@fjfjf7.re",
-    "mail3": "EW2ff7@gdg.com",
-    "group": "Test 2"
-  },
-  {
-    "name": "First 8",
-    "lastname": "Contact 8",
-    "address": "Street home 88 new address № 8",
-    "homePhone": "+7(444)55518",
-    "mobilePhone": "787-3338",
-    "workPhone": "74 66 68",
-    "mail": "mail8@mail.con",
-    "mail2": "ree_rfsf@fjfjf8.re",
-    "mail3": "EW2ff8@gdg.com",
-    "group": "Test 2"
-  },
-  {
-    "name": "First 9",
-    "lastname": "Contact 9",
-    "address": "Street home 88 new address № 9",
-    "homePhone": "+7(444)55519",
-    "mobilePhone": "787-3339",
-    "workPhone": "74 66 69",
-    "mail": "mail9@mail.con",
-    "mail2": "ree_rfsf@fjfjf9.re",
-    "mail3": "EW2ff9@gdg.com",
-    "group": "Test 2"
+    "mail3": "EW2ff4@gdg.com"
   }
 ]
