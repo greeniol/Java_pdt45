@@ -57,11 +57,9 @@ public class ContactData {
   @Transient
   private File photo;
 
-  @Expose
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
           joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "group_id"))
-
   private Set<GroupData> groups = new HashSet<>();
 
   public Groups getGroups() {
@@ -187,23 +185,6 @@ public class ContactData {
   }
 
   @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", address='" + address + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
-            ", mail='" + mail + '\'' +
-            ", mail2='" + mail2 + '\'' +
-            ", mail3='" + mail3 + '\'' +
-            ", groups=" + groups +
-            '}';
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -219,8 +200,7 @@ public class ContactData {
     if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
     if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
     if (mail2 != null ? !mail2.equals(that.mail2) : that.mail2 != null) return false;
-    if (mail3 != null ? !mail3.equals(that.mail3) : that.mail3 != null) return false;
-    return groups != null ? groups.equals(that.groups) : that.groups == null;
+    return mail3 != null ? mail3.equals(that.mail3) : that.mail3 == null;
   }
 
   @Override
@@ -235,8 +215,23 @@ public class ContactData {
     result = 31 * result + (mail != null ? mail.hashCode() : 0);
     result = 31 * result + (mail2 != null ? mail2.hashCode() : 0);
     result = 31 * result + (mail3 != null ? mail3.hashCode() : 0);
-    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", mail='" + mail + '\'' +
+            ", mail2='" + mail2 + '\'' +
+            ", mail3='" + mail3 + '\'' +
+            '}';
   }
 
   public ContactData inGroup(GroupData group) {
