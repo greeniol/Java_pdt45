@@ -66,6 +66,11 @@ public class ContactData {
     return new Groups(groups);
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
+
   public int getId() {
     return id;
   }
@@ -200,7 +205,8 @@ public class ContactData {
     if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
     if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
     if (mail2 != null ? !mail2.equals(that.mail2) : that.mail2 != null) return false;
-    return mail3 != null ? mail3.equals(that.mail3) : that.mail3 == null;
+    if (mail3 != null ? !mail3.equals(that.mail3) : that.mail3 != null) return false;
+    return groups != null ? groups.equals(that.groups) : that.groups == null;
   }
 
   @Override
@@ -215,6 +221,7 @@ public class ContactData {
     result = 31 * result + (mail != null ? mail.hashCode() : 0);
     result = 31 * result + (mail2 != null ? mail2.hashCode() : 0);
     result = 31 * result + (mail3 != null ? mail3.hashCode() : 0);
+    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
   }
 
@@ -234,9 +241,5 @@ public class ContactData {
             '}';
   }
 
-  public ContactData inGroup(GroupData group) {
-    groups.add(group);
-    return this;
-  }
 }
 

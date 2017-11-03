@@ -38,4 +38,13 @@ public class Groups extends ForwardingSet<GroupData> {
     groups.remove(group);
     return groups;
   }
+
+/*  boolean contains(GroupData group) {
+    for (GroupData groupData: delegate) {
+      if (groupData.getId() == group.getId()) {
+        return true;
+      }
+    }
+    return false;
+  }*/
 }

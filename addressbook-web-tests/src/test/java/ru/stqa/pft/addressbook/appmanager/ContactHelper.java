@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-
+import ru.stqa.pft.addressbook.model.GroupData;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -15,11 +15,6 @@ public class ContactHelper extends HelperBase {
   public ContactHelper(WebDriver wd) {
     super(wd);
 
-  }
-
-
-  public void submitNewContact() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -52,6 +47,10 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
+  public void submitNewContact() {
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
+
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
@@ -75,6 +74,11 @@ public class ContactHelper extends HelperBase {
 
   public void modifyContactDetailsForm() {
     click(By.name("modifiy"));
+  }
+
+
+  public void pushContactInGroup() {
+    click(By.name("add"));
   }
 
 
@@ -105,6 +109,13 @@ public class ContactHelper extends HelperBase {
     deleteContact();
     switchAlert();
     contactCache = null;
+  }
+
+  public void pushInGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+      new Select(wd.findElement(By.name("to_group")))
+              .selectByVisibleText(group.getGroupname());
+    pushContactInGroup();
   }
 
   public int count() {
@@ -151,5 +162,6 @@ public class ContactHelper extends HelperBase {
             .withHomephone(homePhone).withMobilephone(mobilePhone).withWorkphone(workPhone)
             .withMail(mail).withMail2(mail2).withMail3(mail3).withAddress(address);
   }
+
 }
 
