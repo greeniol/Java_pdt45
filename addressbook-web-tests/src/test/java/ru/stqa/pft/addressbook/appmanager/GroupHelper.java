@@ -3,6 +3,9 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
@@ -50,6 +53,14 @@ public class GroupHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public void submitDeletionFromGroup() {
+    click(By.name("remove"));
+  }
+
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
   public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
@@ -75,6 +86,19 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
+  public void outOfGroup(GroupData group, int contact) {
+    new Select(wd.findElement(By.name("group")))
+            .selectByVisibleText(group.getGroupname());
+    selectContactById(contact);
+    submitDeletionFromGroup();
+    returnToGroups(group.getId());
+  }
+
+  public void returnToGroups(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
+  }
+
+
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -98,6 +122,5 @@ public class GroupHelper extends HelperBase {
     }
     return new Groups(groupCache);
   }
-
 
 }

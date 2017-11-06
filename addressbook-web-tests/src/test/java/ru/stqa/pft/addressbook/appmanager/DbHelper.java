@@ -10,6 +10,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.security.acl.Group;
 import java.util.List;
 
 public class DbHelper {
@@ -41,19 +42,30 @@ public class DbHelper {
     return new Contacts(result);
   }
 
-  public Groups contactGroups(int contactId) {
+  public Groups groupsInContact(int contactId) {
     Groups groups =null;
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<ContactData> result = session.createQuery("from ContactData where id=" +contactId).list();
-
     session.getTransaction().commit();
     session.close();
     for (ContactData contact : result) {
-
       groups = contact.getGroups();
     }
     return groups;
   }
 
+
+  public Contacts contactInGroups (int groupId) {
+    Contacts contacts =null;
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<GroupData> result = session.createQuery("from GroupData where group_id=" +groupId).list();
+    session.getTransaction().commit();
+    session.close();
+    for (GroupData group : result) {
+      contacts = group.getContactDataSet();
+    }
+    return contacts;
+  }
 }

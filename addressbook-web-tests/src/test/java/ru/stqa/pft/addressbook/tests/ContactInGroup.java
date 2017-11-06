@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,10 +9,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Iterator;
-import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
@@ -55,7 +51,7 @@ public class ContactInGroup extends TestBase {
 
 
   @Test
-  public void testContactInGroup() {
+  public static void testContactInGroup() {
     Groups allgroups = app.db().groups();
     Contacts before = app.db().contacts();
     Groups modifiedContactafter = null;
@@ -73,14 +69,13 @@ public class ContactInGroup extends TestBase {
             app.contact().pushInGroup(contact, group);
             app.goTo().returnToHome();
             int modifiedContactID = contact.getId();
-            modifiedContactafter = app.db().contactGroups(modifiedContactID);
+            modifiedContactafter = app.db().groupsInContact(modifiedContactID);
             Assert.assertTrue(modifiedContactafter.contains(group));
             break;
           }
         }
         break;
       }
-
     }
     Contacts after = app.db().contacts();
     assertEquals(before.size(), after.size());
