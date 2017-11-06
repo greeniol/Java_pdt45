@@ -205,8 +205,7 @@ public class ContactData {
     if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
     if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
     if (mail2 != null ? !mail2.equals(that.mail2) : that.mail2 != null) return false;
-    if (mail3 != null ? !mail3.equals(that.mail3) : that.mail3 != null) return false;
-    return groups != null ? groups.equals(that.groups) : that.groups == null;
+    return mail3 != null ? mail3.equals(that.mail3) : that.mail3 == null;
   }
 
   @Override
@@ -221,8 +220,47 @@ public class ContactData {
     result = 31 * result + (mail != null ? mail.hashCode() : 0);
     result = 31 * result + (mail2 != null ? mail2.hashCode() : 0);
     result = 31 * result + (mail3 != null ? mail3.hashCode() : 0);
-    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public void setHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+  }
+
+  public void setMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+  }
+
+  public void setWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+  }
+
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  public void setMail2(String mail2) {
+    this.mail2 = mail2;
+  }
+
+  public void setMail3(String mail3) {
+    this.mail3 = mail3;
   }
 
   @Override
