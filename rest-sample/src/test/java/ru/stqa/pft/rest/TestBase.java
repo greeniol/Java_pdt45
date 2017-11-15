@@ -63,17 +63,12 @@ public class TestBase {
    JsonElement parsed = new JsonParser().parse(json);
    JsonElement issues = parsed.getAsJsonObject().get("issues");
    Set<Issue> newIssue = new Gson().fromJson(issues,new TypeToken<Set<Issue>>() {}.getType());
-
-
-    if ( states!=2 || states!=3 ){
-     return true;
+   int state = newIssue.iterator().next().getState();
+    if ( state==3 || state==2 ){
+     return false;
    }
-    return false;
+    return true;
   }
-
-
-
-
 
 
 }
