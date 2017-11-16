@@ -15,6 +15,7 @@ import java.util.Iterator;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.testng.Assert.assertEquals;
+import static ru.stqa.pft.addressbook.tests.ContactInGroup.testContactInGroup;
 
 public class ContactOutGroup extends TestBase  {
 
@@ -30,55 +31,40 @@ public class ContactOutGroup extends TestBase  {
 
   @BeforeMethod
   public void ensurePreconditionsGroups() {
+    long now = System.currentTimeMillis();
+    String groupname = String.format("Group %s",now);
     if (app.db().groups().size() == 0) {
       app.goTo().GroupPage();
-      app.group().create(new GroupData().withGroupname("Test 2"));
+      app.group().create(new GroupData().withGroupname(groupname));
       app.goTo().returnToHome();
     }
   }
 
-  @BeforeMethod
-  public void ensurePreconditionsInGroups() {
-    if (groupsWithContact() == 0) {
-      ContactInGroup.testContactInGroup();
-    }
-  }
-
-  public static int groupsWithContact() {
-    Groups groupsall = app.db().groups();
-    int groupsWithContact = 0;
-    Iterator<GroupData> groups = groupsall.iterator();
-    while (groups.hasNext()) {
-      GroupData group = groups.next();
-      if (group.getContactDataSet().size() != 0) {
-        groupsWithContact = ++groupsWithContact;
-      }
-    }
-    return groupsWithContact;
-  }
-
   @Test
   public static void testContactOutGroup() {
-    Groups before = app.db().groups();
-    Contacts modifiedGroupAfter = null;
-    int modifiedGroupID =0;
-    Iterator<GroupData> groups = before.iterator();
-    while (groups.hasNext()) {
-      GroupData group = groups.next();
-      if (group.getContactDataSet().size() != 0) {
-        int contact = group.getContactDataSet().iterator().next().getId();
-        app.group().outOfGroup(group, contact);
-        modifiedGroupID = group.getId();
-          modifiedGroupAfter = app.db().contactInGroups(modifiedGroupID);
-          Assert.assertTrue(!modifiedGroupAfter.contains(group));
-        break;
-          }
+    Groups allgroups = app.db().groups();
+    Iterator<GroupData> groups = allgroups.iterator();
+    Contacts contact = app.db().contacts();
+    ContactData contactModifyGroups = contact.iterator().next();
+    Groups contactGroupBefore = contactModifyGroups.getGroups();
+    GroupData group = null;
+    if (contactModifyGroups.getGroups().size() != 0) {
+      while (groups.hasNext()) {
+        group = groups.next();
+        if (contactModifyGroups.getGroups().contains(group) ) {
+          app.group().outOfGroup(group, contactModifyGroups.getId());
+          break;
+         }
+        }
       }
-    Groups after = app.db().groups();
-    assertEquals(before.size(), after.size());
-    assertThat(app.contact().count(), equalTo(modifiedGroupAfter.size())) ;
-
-
+     else if (contactModifyGroups.getGroups().size() == 0){
+      group = groups.next();
+      app.contact().pushInGroup(contactModifyGroups, group);
+      app.goTo().returnToHome();
+      contactGroupBefore =app.db().groupsInContact(contactModifyGroups.getId());
+      app.group().outOfGroup(group, contactModifyGroups.getId());
+      }
+    Groups contactGroupAfter= app.db().groupsInContact(contactModifyGroups.getId());
+    assertThat(contactGroupAfter, equalTo(contactGroupBefore.without(group)));
   }
-
 }
