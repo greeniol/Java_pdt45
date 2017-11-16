@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -10,14 +10,15 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Iterator;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
+
 
 
 public class ContactInGroup extends TestBase {
   @BeforeMethod
   public void ensurePreconditionsContacts() {
-    if (app.db().contacts().size() == 0 || contactsWithFullGroups() == app.db().contacts().size()) {
+    if (app.db().contacts().size() == 0) {
       app.goTo().returnToHome();
       app.contact().create(new ContactData().withName("First").withLastname("Contact").withAddress("Street home 88")
               .withMail("mail@mail.con").withHomephone("+7(444)55511").withMobilephone("787-3333").withWorkphone("74 66 61"), false);
@@ -27,59 +28,52 @@ public class ContactInGroup extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditionsGroups() {
-    if (app.db().groups().size() == 0) {
+    if (app.db().groups().size() == 0 ) {
       app.goTo().GroupPage();
       app.group().create(new GroupData().withGroupname("Test 2"));
       app.goTo().returnToHome();
     }
   }
 
-
-  public static int contactsWithFullGroups() {
-    Groups groups = app.db().groups();
-    Contacts before = app.db().contacts();
-    int contactsWithFullGroup = 0;
-    Iterator<ContactData> contacts = before.iterator();
-    while (contacts.hasNext()) {
-      ContactData contact = contacts.next();
-      if (contact.getGroups().size() == groups.size()) {
-        contactsWithFullGroup = ++contactsWithFullGroup;
-      }
-    }
-    return contactsWithFullGroup;
+  public static void newGroup() {
+    long now = System.currentTimeMillis();
+    String groupname = String.format("Group %s",now);
+    app.goTo().GroupPage();
+    app.group().create(new GroupData().withGroupname(groupname));
+    app.goTo().returnToHome();
   }
-
 
   @Test
   public static void testContactInGroup() {
     Groups allgroups = app.db().groups();
-    Contacts before = app.db().contacts();
-    Groups modifiedContactafter = null;
-
-    Iterator<ContactData> contacts = before.iterator();
     Iterator<GroupData> groups = allgroups.iterator();
-
-    while (contacts.hasNext()) {
-      ContactData contact = contacts.next();
-      if (contact.getGroups().size() != allgroups.size()) {
-        while (groups.hasNext()) {
-          GroupData group = groups.next();
-          if (!contact.getGroups().contains(group))
-          {
-            app.contact().pushInGroup(contact, group);
-            app.goTo().returnToHome();
-            int modifiedContactID = contact.getId();
-            modifiedContactafter = app.db().groupsInContact(modifiedContactID);
-            Assert.assertTrue(modifiedContactafter.contains(group));
-            break;
-          }
+    Contacts contact = app.db().contacts();
+    ContactData contactModifyGroups = contact.iterator().next();
+    Groups contactGroupBefore = contactModifyGroups.getGroups();
+    GroupData group = null;
+    if (contactModifyGroups.getGroups().size() != allgroups.size()) {
+      while (groups.hasNext()) {
+        group = groups.next();
+        if (!contactModifyGroups.getGroups().contains(group)) {
+          app.contact().pushInGroup(contactModifyGroups, group);
+          app.goTo().returnToHome();
+          break;
         }
+      }
+    } else if (contactModifyGroups.getGroups().size() == allgroups.size()){
+    newGroup();
+    groups = app.db().groups().iterator();
+    while (groups.hasNext()) {
+      group = groups.next();
+      if (!contactModifyGroups.getGroups().contains(group)) {
+        app.contact().pushInGroup(contactModifyGroups, group);
+        app.goTo().returnToHome();
         break;
       }
+     }
     }
-    Contacts after = app.db().contacts();
-    assertEquals(before.size(), after.size());
-
-
+    Groups contactGroupAfter= app.db().groupsInContact(contactModifyGroups.getId());
+    assertThat(contactGroupAfter, equalTo(contactGroupBefore.withAdded(group)));
   }
 }
+
