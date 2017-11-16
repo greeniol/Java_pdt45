@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.tests;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
@@ -20,12 +21,16 @@ public class ChangePassTests extends TestBase {
   public void testRegistration() throws IOException, MessagingException {
     if ( app.db().users().size()==0) {
       long now = System.currentTimeMillis();
-      String emailcr = String.format("user%s@localhost",now);
-      String usercr = String.format("user%s",now);
+      String emailcr = String.format("username%s@localhost",now);
+      String usercr = String.format("username%s",now);
       String passwordcr = "password";
       app.james().createUser(usercr, passwordcr);
       app.registration().start(usercr, emailcr);
     }
+  }
+  @BeforeMethod
+  public void startMailServer(){
+    app.mail().start();
   }
 
   @Test
@@ -34,14 +39,15 @@ public class ChangePassTests extends TestBase {
     Users users = app.db().users();
     UserData userToChange = users.iterator().next();
     String email = userToChange.getEmail();
-    String user = userToChange.getUsername();
-    String password =userToChange.getPassword();
-    app.changePass().modifyPass(user,app.getProperty("web.adminLogin"),app.getProperty("web.adminPassword") );
-    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 70000);
+    String username = userToChange.getUsername();
+    app.changePass().modifyPass(username,app.getProperty("web.adminLogin"),app.getProperty("web.adminPassword") );
+    List<MailMessage> mailMessages =app.mail().waitForMail(1,10000);
+  //  List<MailMessage> mailMessages = app.james().waitForMail(username,String.format("password") , 70000);
     String confirmationLink = findConfirmationLink(mailMessages,email);
     app.changePass().change(confirmationLink, passwordChanged);
-    assertTrue(app.newSession().login(user,passwordChanged));
+    assertTrue(app.newSession().login(username,passwordChanged));
   }
+
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
     MailMessage mailMessage = mailMessages.stream().filter((m)->m.text.contains(String.format("Someone"))).findFirst().get();
@@ -49,4 +55,8 @@ public class ChangePassTests extends TestBase {
     return regex.getText(mailMessage.text);
   }
 
+  @AfterMethod(alwaysRun = true)
+  public void stopMailServer(){
+    app.mail().stop();
+  }
 }
