@@ -21,6 +21,7 @@ public class ChangePassHelper extends HelperBase {
 
   public void modifyPass (String changeuser, String username, String password) {
     login(username, password);
+    click(By.linkText("Manage"));
     click(By.linkText("Manage Users"));
     click(By.linkText(changeuser));
     click(By.cssSelector("input[value='Reset Password']"));

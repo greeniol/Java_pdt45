@@ -23,6 +23,7 @@ public class ApplicationManager {
   private JamesHelper jamesHelper;
   private ChangePassHelper changePassHelper;
   private SoapHelper soapHelper;
+  private DbHelper dbHelper;
 
 
   public ApplicationManager(String browser) {
@@ -33,6 +34,7 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src\\test\\resources\\%s.properties", target))));
+    dbHelper = new DbHelper();
   }
 
   public void stop() {
@@ -80,6 +82,7 @@ public class ApplicationManager {
       }
       wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
       wd.get(properties.getProperty("web.baseUrl"));
+
     }
     return wd;
   }
@@ -103,5 +106,9 @@ public class ApplicationManager {
       soapHelper = new SoapHelper(this);
     }
     return soapHelper;
+  }
+
+  public DbHelper db() {
+    return dbHelper;
   }
 }
